@@ -14,6 +14,7 @@ async def test_login_for_access_token():
     assert "access_token" in response.json()
     assert response.json()["token_type"] == "bearer"
 
+
 @pytest.mark.asyncio
 async def test_create_qr_code_unauthorized():
     # Attempt to create a QR code without authentication
@@ -55,3 +56,4 @@ async def test_create_and_delete_qr_code():
             qr_filename = qr_code_url.split('/')[-1]
             delete_response = await ac.delete(f"/qr-codes/{qr_filename}", headers=headers)
             assert delete_response.status_code == 204  # No Content, successfully deleted
+            
